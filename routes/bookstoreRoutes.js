@@ -8,6 +8,12 @@ const router = new express.Router()
 
 router.post('/register',userController.register)
 
+//login
+router.post('/login',userController.login)
+
+//googLogin
+router.post('/google-login',userController.googleLogin)
+
 // Authorised Routes
 
 
