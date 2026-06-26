@@ -1,5 +1,7 @@
 const express = require("express")
 const userController = require('../controllers/userController')
+const authenticationMiddleware = require("../middlewares/authenticationMiddleware")
+const multerMiddleware = require("../middlewares/multerMiddleware")
 
 const router = new express.Router()
 
@@ -15,6 +17,7 @@ router.post('/login',userController.login)
 router.post('/google-login',userController.googleLogin)
 
 // Authorised Routes
-
+// user edit
+router.put('/users/:id',authenticationMiddleware,multerMiddleware.single('picture'),userController.userProfileUpdate)
 
 module.exports = router
