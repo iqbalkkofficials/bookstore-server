@@ -107,5 +107,4 @@ exports.userProfileUpdate = async (req, res) => {
   console.log(updatedPicture)
   const updateUser = await users.findByIdAndUpdate({_id:id},{username,email,password:encryptPassword,picture:updatedPicture,bio,role},{new:true})
   res.status(200).json(updateUser)
-
 };
