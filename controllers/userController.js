@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
   console.log("Insider register controller");
-  console.log(req.body);
   const { username, email, password } = req.body;
   try {
     const existingUser = await users.findOne({ email });
@@ -32,7 +31,6 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   console.log("Insider login controller");
-  console.log(req.body);
   const { email, password } = req.body;
   try {
     const existingUser = await users.findOne({ email });
@@ -62,7 +60,6 @@ exports.login = async (req, res) => {
 
 exports.googleLogin = async (req, res) => {
   console.log("Insider googleLogin controller");
-  console.log(req.body);
   const { email, password, username, picture } = req.body;
   try {
     const existingUser = await users.findOne({ email });
@@ -101,10 +98,8 @@ exports.userProfileUpdate = async (req, res) => {
   const email = req.payload
   const role = req.role
   const {username,password,bio,picture} = req.body
-  console.log(id,email,role,username,password,bio,picture)
   let encryptPassword = await bcrypt.hash(password,10)
   const updatedPicture = req.file?req.file.filename:picture
-  console.log(updatedPicture)
   const updateUser = await users.findByIdAndUpdate({_id:id},{username,email,password:encryptPassword,picture:updatedPicture,bio,role},{new:true})
   res.status(200).json(updateUser)
 };
